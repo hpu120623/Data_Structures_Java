@@ -25,6 +25,7 @@ public class LinkedList<E> {
         }
     }
 
+    //    private Node head;
     private Node dummyhead;
     private int size;
 
@@ -59,6 +60,11 @@ public class LinkedList<E> {
 
     // 在链表头部添加新的元素e
     public void addFirst(E e) {
+//        Node node = new Node(e);
+//        node.next = head;
+//        head = node;
+//        head = new Node(e, head);
+//        size++;
         add(0, e);
     }
 
@@ -112,6 +118,33 @@ public class LinkedList<E> {
             cur = cur.next;
         }
         return false;
+    }
+
+    // 从链表中删除index(0-based)位置的元素，返回删除的元素
+    public E remove(int index) {
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("Remove failed.Index is illegal.");
+        }
+
+        Node prev = dummyhead;
+        for (int i = 0; i < index; i++) {
+            prev = prev.next;
+        }
+        Node retNode = prev.next;
+        prev.next = retNode.next;
+        retNode.next = null;
+        size--;
+        return retNode.e;
+    }
+
+    // 从链表中删除第一个元素，返回删除的元素
+    public E removeFirst(){
+        return remove(0);
+    }
+
+    // 从链表中删除最后一个元素，返回删除的元素
+    public E removeLast(){
+        return remove(size - 1);
     }
 
     @Override
