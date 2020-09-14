@@ -12,6 +12,14 @@ public class Array<E> {
         size = 0;
     }
 
+    public Array(E[] arr) {
+        data = (E[]) new Object[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            data[i] = arr[i];
+        }
+        size = arr.length;
+    }
+
     // 无参数的构造函数，默认数组的容量capacity=10
     public Array() {
         this(10);
@@ -66,11 +74,11 @@ public class Array<E> {
         return data[index];
     }
 
-    public E getLast(){
+    public E getLast() {
         return get(size - 1);
     }
 
-    public E getFirst(){
+    public E getFirst() {
         return get(0);
     }
 
@@ -138,6 +146,16 @@ public class Array<E> {
         if (index != -1) {
             remove(index);
         }
+    }
+
+    // 交换索引位置
+    public void swap(int i, int j) {
+        if (i < 0 || i >= size || j < 0 || j >= size) {
+            throw new IllegalArgumentException("Index is illegal.");
+        }
+        E t = data[i];
+        data[i] = data[j];
+        data[j] = t;
     }
 
     @Override
