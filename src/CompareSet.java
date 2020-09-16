@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class CompareSet {
-    public static double testSet(Set<String> set, String filename){
+    public static double testSet(Set<String> set, String filename) {
 
         long startTime = System.nanoTime();
 
@@ -19,20 +19,26 @@ public class CompareSet {
         }
         long endTime = System.nanoTime();
 
-        return (endTime - startTime) /1000000000.0;
+        return (endTime - startTime) / 1000000000.0;
     }
 
     public static void main(String[] args) {
-        String filename = "pride-and-prejudice.txt";    
+        String filename = "pride-and-prejudice.txt";
 
         BSTSet<String> bstSet = new BSTSet<>();
         double time1 = testSet(bstSet, filename);
-        System.out.println("BST Set: "+time1+"s");
+        System.out.println("BST Set: " + time1 + "s");
 
         System.out.println();
 
         LinkedListSet<String> linkedListSet = new LinkedListSet<>();
         double time2 = testSet(linkedListSet, filename);
-        System.out.println("Linked List Set: "+time2+"s");
+        System.out.println("Linked List Set: " + time2 + "s");
+
+        System.out.println();
+
+        AVLSet<String> avlSet = new AVLSet<>();
+        double time3 = testSet(avlSet, filename);
+        System.out.println("AVL Set: " + time3 + "s");
     }
 }
