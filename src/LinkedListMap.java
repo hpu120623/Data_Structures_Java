@@ -84,13 +84,11 @@ public class LinkedListMap<K, V> implements Map<K, V> {
         if (node == null) {
             throw new IllegalArgumentException(key + " doesn't exist!");
         }
-
         node.value = newValue;
     }
 
     @Override
     public V remove(K key) {
-
         Node prev = dummyHead;
         while (prev.next != null) {
             if (prev.next.key.equals(key)) {
@@ -98,7 +96,6 @@ public class LinkedListMap<K, V> implements Map<K, V> {
             }
             prev = prev.next;
         }
-
         if (prev.next != null) {
             Node delNode = prev.next;
             prev.next = delNode.next;
@@ -106,7 +103,6 @@ public class LinkedListMap<K, V> implements Map<K, V> {
             size--;
             return delNode.value;
         }
-
         return null;
     }
 

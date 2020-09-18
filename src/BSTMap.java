@@ -125,7 +125,6 @@ public class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
     // 从二分搜索树中删除键为key的节点
     @Override
     public V remove(K key){
-
         Node node = getNode(root, key);
         if(node != null){
             root = remove(root, key);
@@ -135,11 +134,9 @@ public class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
     }
 
     private Node remove(Node node, K key){
-
         if( node == null ) {
             return null;
         }
-
         if( key.compareTo(node.key) < 0 ){
             node.left = remove(node.left , key);
             return node;
@@ -149,7 +146,6 @@ public class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
             return node;
         }
         else{   // key.compareTo(node.key) == 0
-
             // 待删除节点左子树为空的情况
             if(node.left == null){
                 Node rightNode = node.right;
@@ -157,7 +153,6 @@ public class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
                 size --;
                 return rightNode;
             }
-
             // 待删除节点右子树为空的情况
             if(node.right == null){
                 Node leftNode = node.left;
@@ -165,17 +160,12 @@ public class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
                 size --;
                 return leftNode;
             }
-
-            // 待删除节点左右子树均不为空的情况
-
-            // 找到比待删除节点大的最小节点, 即待删除节点右子树的最小节点
+            // 待删除节点左右子树均不为空的情况，找到比待删除节点大的最小节点, 即待删除节点右子树的最小节点
             // 用这个节点顶替待删除节点的位置
             Node successor = minimum(node.right);
             successor.right = removeMin(node.right);
             successor.left = node.left;
-
             node.left = node.right = null;
-
             return successor;
         }
     }

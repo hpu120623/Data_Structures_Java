@@ -157,7 +157,7 @@ public class BST<E extends Comparable<E>> {
         return maxinum(root).e;
     }
 
-    // 返回以node为根的二分搜索树的最小值所在的节点
+    // 返回以node为根的二分搜索树的最大值所在的节点
     private Node maxinum(Node node) {
         if (node.right == null) {
             return node;
@@ -210,8 +210,7 @@ public class BST<E extends Comparable<E>> {
         root = remove(root, e);
     }
 
-    // 删除以node为根的二分搜索树中值为e的节点，递归算法
-    // 返回删除节点后新的二分搜索树的根
+    // 删除以node为根的二分搜索树中值为e的节点，递归算法，返回删除节点后新的二分搜索树的根
     private Node remove(Node node, E e) {
         if (node == null) {
             return null;
@@ -236,8 +235,7 @@ public class BST<E extends Comparable<E>> {
                 size--;
                 return leftNode;
             }
-            // 待删除节点左右子树均不为空的情况
-            // 找得到比待删除节点大的最小节点，即待删除节点右子树的最小节点
+            // 待删除节点左右子树均不为空的情况。找到比待删除节点大的最小节点，即待删除节点右子树的最小节点
             // 用这个节点顶替待删除节点的位置
             Node successor = mininum(node.right);
             successor.right = removeMin(node.right);
